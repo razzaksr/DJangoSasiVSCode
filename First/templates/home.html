@@ -11,27 +11,9 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 </head>
 <body>
-<div class="container padding">
-	<p class="text-danger text-center">{{info}}</p>
-	<h1 class="text-primary text-center display-4"> Zealous Placement Buddy </h1>
-	<hr class="my-4">
-	<form class="row col-lg-4 offset-lg-4" action="valid" method="post">
-		{%csrf_token%}
-		<div class="padding justify-content-center">
-			<div class="form group">
-			<label for="user">User Name</label>
-			<input type="text" name="user" placeholder="Enter the username" class="form-control">
-		</div>
-		<div class="form group">
-			<label for="pass">Password</label>
-			<input type="password" name="pass" placeholder="Enter the password" class="form-control">
-		</div>
-		<div class="text-center mt-3">
-			<input type="submit" value="Login" class="btn btn-outline-success ">
-			<input type="reset" value="Clear" class="btn btn-outline-secondary ">
-		</div>
-		</div>
-	</form>
-</div>
+    <p class="text-primary">The logged person.....{{who}}</p>
+    <ul>
+        <li><a href="feed">Enroll Candidate</a></li>
+    </ul>
 </body>
 </html>
