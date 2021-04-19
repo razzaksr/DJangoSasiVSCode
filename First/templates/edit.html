@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -105,4 +106,113 @@
 	</div>
 </div>
 </body>
+=======
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Enrolling new one to placement buddy</title>
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+	<p class="text-center text-warning">{{info}}</p>
+	<div class="justify-conetnt-center">
+		<div class="padding"><!-- <div class="col-xs-12 col-sm-12 col-md-6"> -->
+			<h1 class="display-4 text-primary">Placement buddy enrollment</h1>
+			<form class="form text-primary" action="/update/{{candidate.id}}" method="post">
+				{%csrf_token%}
+                <div class="form-group">
+					<label >ID</label>
+					<input class="form-control" type="text" id="id_id" name="id" value={{candidate.id}}>
+				</div>
+				<div class="form-group">
+					<label >Register Number</label>
+					<input class="form-control" type="text" id="id_regno" name="regno" value={{candidate.regno}}>
+				</div>
+				<div class="form-group row">
+					<label class="col-sm-2 col-form-label">Name of Candidate</label>
+					<input type="text" id="id_name" class="form-control" name="name" value={{candidate.name}}>
+				</div>
+				<div class="form-checked">
+					{% comment %} <div class="form-inline">
+						<label for="gender">Select Gender</label>
+						<input type="radio" name="gender" value="male" class="form-control" style="margin:4px; margin-left: 30px">Male
+						<input type="radio" name="gender" value="female" class="form-control" style="margin-left: 30px">Female
+						<input type="radio" name="gender" value="other" class="form-control" style="margin-left: 30px">Other
+					</div> {% endcomment %}
+					<input type="text" id="id_gender" class="form-control" name="gender" value={{candidate.gender}}>
+				</div>
+				<div class="form group">
+					<label >Department</label>
+					<input type="text" id="id_dept" class="form-control" name="dept" value={{candidate.dept}}>
+				</div>
+				<div class="form group">
+					<label >Batch year</label>
+					<input type="text" id="id_batch" name="batch" class="form-control" value={{candidate.batch}}>
+				</div>
+				<div class="form group">
+					<label >Contact</label>
+					<input type="text" id="id_contact" name="contact" class="form-control" value={{candidate.contact}}>
+				</div>
+				<div class="form group">
+					<label >Email</label>
+					<input type="text" id="id_email" name="email" class="form-control" value={{candidate.email}}>
+				</div>
+				<div class="form group">
+					<label >Address</label>
+					<input type="text" id="id_address" name="address" class="form-control" value={{candidate.address}}>
+				</div>
+				<div class="form group">
+					<label >CGPA</label>
+					<input type="text" id="id_cgpa" name="cgpa" class="form-control" value={{candidate.cgpa}}>
+				</div>
+				<div class="form group">
+					<label >Higher Secondary</label>
+					<input type="text" id="id_hsc" name="hsc" class="form-control" value={{candidate.hsc}}>
+				</div>
+				<div class="form group">
+					<label >Diploma</label>
+					<input type="text" id="id_deploma" name="diploma" class="form-control" value={{candidate.diploma}}>
+				</div>
+				<div class="form group">
+					<label >SSLC</label>
+					<input type="text" id="id_sslc" name="sslc" class="form-control" value={{candidate.sslc}}>
+				</div>
+				<div class="form-checked">
+					<label >Select your career</label>
+					{% comment %} <div class="form-inline">
+						<label for="interest">Select your career</label>
+						<input type="radio" name="interest" value="it" class="form-control" style="margin:4px; margin-left: 30px">IT
+						<input type="radio" name="interest" value="core" class="form-control" style="margin-left: 30px">Core
+						<input type="radio" name="interest" value="higher_studies" class="form-control" style="margin-left: 30px">Higher Studies
+						<input type="radio" name="interest" value="not_interested" class="form-control" style="margin-left: 30px">Not Interested
+					</div> {% endcomment %}
+					<input type="text" id="id_career" name="career" class="form-control" value={{candidate.career}}>
+				</div>
+				<div class="form group">
+					<label >Skills</label>
+					<input type="text" id="id_skills" name="skills" class="form-control" value={{candidate.skills}}>
+				</div>
+				<div class="form group">
+					<label >Placed</label>
+					<input type="text" id="id_placed" name="placed" class="form-control" value={{candidate.placed}}>
+				</div>
+				<div class="form group">
+					<label >Status</label>
+					<input type="text" id="id_status" name="status" class="form-control" value={{candidate.status}}>
+				</div>
+					<button class="btn btn-outline-primary">Update</button>
+                    <button class="btn btn-outline-danger">Clear</button>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+>>>>>>> 9ce315fb03b0fcc6e140b9a1e8eb94dd8225c3b4
 </html>
