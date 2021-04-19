@@ -13,7 +13,43 @@
 <body>
     <p class="text-primary">The logged person.....{{who}}</p>
     <ul>
-        <li><a href="feed">Enroll Candidate</a></li>
+        <li><a href="/candidate">Enroll Candidate</a></li>
     </ul>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <table class="table table-striped table-bordered table-sm table-rounded">  
+                <thead class="thead-dark">
+                    <tr>  
+                        <th>S. NO</th><th>Registration number</th>
+                        <th>Name</th><th>Gender</th><th>Department</th><th>Contact</th>
+                        <th>Email</th><th>Address</th><th>Batch Year</th><th>CGPA</th><th>HSC</th>
+                        <th>Diploma</th><th>SSLC</th><th>Skills</th><th>Placed Concerns</th>
+                        <th>Career</th><th>Status</th>
+                        <th>Actions</th>  
+                    </tr>
+                </thead>  
+                <tbody>  
+                    {% for candidate in candidates %}  
+                        <tr>  
+                            <td>{{ candidate.id }}</td><td>{{ candidate.regno }}</td>  
+                            <td>{{ candidate.name }}</td><td>{{ candidate.gender }}</td>
+                            <td>{{ candidate.dept }}</td><td>{{ candidate.contact }}</td>
+                            <td>{{ candidate.email }}</td><td>{{ candidate.address }}</td>
+                            <td>{{ candidate.batch }}</td><td>{{ candidate.cgpa }}</td>
+                            <td>{{ candidate.hsc }}</td><td>{{ candidate.diploma }}</td>
+                            <td>{{ candidate.sslc }}</td><td>{{ candidate.skills }}</td>
+                            <td>{{ candidate.placed }}</td><td>{{ candidate.career }}</td>
+                            <td>{{ candidate.status }}</td>
+
+                            <td>  
+                                <a href="/edit/{{ candidate.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+                                <a href="/delete/{{ candidate.id }}">Delete</a>
+                            </td>  
+                        </tr>  
+                    {% endfor %}  
+                </tbody>  
+            </table>  
+        </div>
+    </div>
 </body>
 </html>
