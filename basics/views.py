@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from . import models
+from basics.models import Candidates
+from basics.forms import CandidatesForm
 
 # Create your views here.
 
@@ -25,19 +28,18 @@ def getEnroll(request):
     return render(request,'enroll.html')
 
 def setEnroll(request):
-    a=int(request.POST['regno'])
-    b=request.POST['name']
-    c=request.POST['gender']
-    d=request.POST['dept']
-    e=int(request.POST['batch'])
-    f=int(request.POST['contact'])
-    g=request.POST['email']
-    h=request.POST['add']
-    i=float(request.POST['cgpa'])
-    j=float(request.POST['hsc'])
-    k=float(request.POST['diploma'])
-    l=float(request.POST['sslc'])
-    m=request.POST['interest']
-    n=request.POST['skills']
+    if request.method=="POST":
+        object=CandidatesForm(request.POST)
+        if object.is_valid():
+            try:
+                print('object before save',object)
+                object.save()
+                print('object saved',object)
+                return redirect("/")
+            except:pass
+    else:
+        object=CandidatesForm()
+        print("NEw form called")
+    return render(request,"enroll.html",{"obj":object})
 
     
