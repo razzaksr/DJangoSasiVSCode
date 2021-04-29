@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+#<<<<<<< HEAD
 """First URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -21,7 +21,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('crudl.urls'))
 ]
-=======
+#=======
 """First URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -44,4 +44,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('crudl.urls'))
 ]
->>>>>>> 9ce315fb03b0fcc6e140b9a1e8eb94dd8225c3b4
+#>>>>>>> 9ce315fb03b0fcc6e140b9a1e8eb94dd8225c3b4

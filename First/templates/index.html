@@ -13,25 +13,27 @@
 <body>
 <div class="container padding">
 	<p class="text-danger text-center">{{info}}</p>
-	<h1 class="text-primary text-center display-4"> Zealous Placement Buddy </h1>
-	<hr class="my-4">
-	<form class="row col-lg-4 offset-lg-4" action="valid" method="post">
-		{%csrf_token%}
-		<div class="padding justify-content-center">
-			<div class="form group">
-			<label for="user">User Name</label>
-			<input type="text" name="user" placeholder="Enter the username" class="form-control">
+	<div class="row justify-content-center">
+		<div class="col-md-6 col-sm-12 rounded shadow p-5 border">
+			<h1 class="text-primary text-center display-4"> Zealous Placement Buddy </h1>
+			<hr class="my-4">
+			<form action="valid" method="post">
+				{%csrf_token%}
+				<div class="form group">
+					<label for="user">User Name</label>
+					<input type="text" name="user" placeholder="Enter the username" class="form-control">
+				</div>
+				<div class="form group">
+					<label for="pass">Password</label>
+					<input type="password" name="pass" placeholder="Enter the password" class="form-control">
+				</div>
+				<div class="my-4 row justify-content-around">
+					<input type="submit" value="Login" class="btn btn-outline-success ">
+					<input type="reset" value="Clear" class="btn btn-outline-secondary ">
+				</div>
+			</form>
 		</div>
-		<div class="form group">
-			<label for="pass">Password</label>
-			<input type="password" name="pass" placeholder="Enter the password" class="form-control">
-		</div>
-		<div class="text-center mt-3">
-			<input type="submit" value="Login" class="btn btn-outline-success ">
-			<input type="reset" value="Clear" class="btn btn-outline-secondary ">
-		</div>
-		</div>
-	</form>
+	</div>
 </div>
 </body>
 </html>
