@@ -13,5 +13,5 @@ urlpatterns = [
     path('delete/<int:id>',views.remove),
     path('find',views.find),
     path('look',views.look),
-    path('print',views.printing)
+    path('hard',views.printing)
 ]

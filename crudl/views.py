@@ -3,8 +3,9 @@ from django.shortcuts import render, redirect
 from crudl.models import Candidates
 from crudl.forms import CandidatesForm
 
-candidates=[]
 one=''
+
+temp=[]
 
 def initial(request):
     return render(request,'index.html')
@@ -16,6 +17,13 @@ def auth(request):
         one=user
         candidates=Candidates.objects.all()
         print(len(candidates))
+
+        temp.clear();
+        for x in candidates:
+            cand=Candidates.objects.get(id=x.id)
+            temp.append(cand)
+        
+        
         return render(request,"home.html",{"candidates":candidates,'who':one})
     else:
         return render(request,'index.html',{"info":"Login failed"})
@@ -40,6 +48,12 @@ def candidate(request):
 
 def show(request):
     candidates=Candidates.objects.all()
+
+    temp.clear();
+    for x in candidates:
+            cand=Candidates.objects.get(id=x.id)
+            temp.append(cand)
+
     return render(request,"home.html",{"candidates":candidates,'who':one})
 
 def edit(request,id):
@@ -81,10 +95,17 @@ def look(request):
             if sk in x.skills:
                 can.append(x)
     candidates=can
+    temp.clear();
+    for x in candidates:
+            cand=Candidates.objects.get(id=x.id)
+            temp.append(cand)
     return render(request,"home.html",{'candidates':candidates})
 
 
 def printing(request):
-    for x in candidates:
+    for x in temp:
         print(x.name)
-    return render(request,"home.html",{'candidates':candidates})
+
+    
+    
+    return render(request,"home.html",{'candidates':temp})
