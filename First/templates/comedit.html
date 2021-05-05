@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Enrolling new one to placement buddy</title>
+<!-- CSS only -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container">
+	<p class="text-center text-warning">{{info}}</p>
+	<div class="row justify-content-center">
+		<div class="col-sm-12 col-md-6 p-3 rounded border shadow">
+			<h1 class="display-4 text-primary">Placement buddy enrollment</h1>
+			<form class="form text-primary" action="/updatecom/{{company.id}}" method="post">
+				{%csrf_token%}
+                <div class="form-group">
+					<label >ID</label>
+					<input class="form-control" type="text" id="id_id" name="id" value={{company.id}}>
+				</div>
+				<div class="form-group">
+					<label >Company name</label>
+					<input class="form-control" type="text" id="id_org" name="org" value={{company.org}}>
+				</div>
+				<div class="form-group">
+					<label >Company Visted date</label>
+					<input class="form-control" type="text" id="id_date" name="date" value={{company.date}}>
+				</div>
+				<div class="form-group">
+					<label >Company requred count</label>
+					<input class="form-control" type="text" id="id_required" name="required" value={{company.required}}>
+				</div>
+				<div class="form-group">
+					<label >Company Role</label>
+					<input class="form-control" type="text" id="id_role" name="role" value={{company.role}}>
+				</div>
+				<div class="form-group">
+					<label >Company package offered</label>
+					<input class="form-control" type="text" id="id_package" name="package" value={{company.package}}>
+				</div>
+				<div class="form-group">
+					<label >Company taken count</label>
+					<input class="form-control" type="text" id="id_taken" name="taken" value={{company.taken}}>
+				</div>
+				<div class="form-group">
+					<label >Company reosurce names</label>
+					<input class="form-control" type="text" id="id_whom" name="whom" value={{company.whom}}>
+				</div>
+				<div class="row justify-content-around">
+					<button class="btn btn-outline-primary">Update</button>
+                    <button class="btn btn-outline-danger">Clear</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+</html>

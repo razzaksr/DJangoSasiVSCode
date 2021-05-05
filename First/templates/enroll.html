@@ -14,8 +14,8 @@
 <body>
 <div class="container">
 	<p class="text-center text-warning">{{info}}</p>
-	<div class="justify-conetnt-center">
-		<div class="padding"><!-- <div class="col-xs-12 col-sm-12 col-md-6"> -->
+	<div class="row justify-content-center">
+		<div class="col-md-6 col-sm-12 p-3 rounded border shadow">
 			<h1 class="display-4 text-primary">Placement buddy enrollment</h1>
 			<form class="form text-primary" action="/candidate" method="post">
 				{%csrf_token%}
@@ -95,8 +95,10 @@
 					<label >Status</label>
 					<div>{{obj.status}}</div>
 				</div>
+				<div class="row justify-content-around">
 					<button class="btn btn-outline-primary">Add</button>
                     <button class="btn btn-outline-danger">Clear</button>
+				</div>
 			</form>
 		</div>
 	</div>

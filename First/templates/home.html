@@ -14,53 +14,8 @@
 <body>
     <p class="text-primary">The logged person.....{{who}}</p>
     <div class="row justify-content-around">
-        <a class="btn btn-outline-success" href="/candidate">Enroll Candidate</a>
-        <a class="btn btn-outline-info" href="/find">Find Candidate</a>
-    </div>
-    <div class="my-4 container-fluid">
-        <div class="row justify-content-center">
-            <div class="col-md-12 col-sm-12">
-                <table class="table table-striped table-responsive-md table-responsive-sm table-bordered table-sm table-rounded">  
-                    <thead class="thead-dark">
-                        <tr>  
-                            <th>S. NO</th><th>Registration number</th>
-                            <th>Name</th><th>Gender</th><th>Department</th><th>Contact</th>
-                            <th>Email</th><th>Address</th><th>Batch Year</th><th>CGPA</th><th>HSC</th>
-                            <th>Diploma</th><th>SSLC</th><th>Skills</th><th>Placed Concerns</th>
-                            <th>Career</th><th>Status</th>
-                            <th>Actions</th>  
-                        </tr>
-                    </thead>  
-                    <tbody>  
-                        {% if candidates%}
-                            {% for candidate in candidates %}  
-                                <tr>  
-                                    <td>{{ candidate.id }}</td><td>{{ candidate.regno }}</td>  
-                                    <td>{{ candidate.name }}</td><td>{{ candidate.gender }}</td>
-                                    <td>{{ candidate.dept }}</td><td>{{ candidate.contact }}</td>
-                                    <td>{{ candidate.email }}</td><td>{{ candidate.address }}</td>
-                                    <td>{{ candidate.batch }}</td><td>{{ candidate.cgpa }}</td>
-                                    <td>{{ candidate.hsc }}</td><td>{{ candidate.diploma }}</td>
-                                    <td>{{ candidate.sslc }}</td><td>{{ candidate.skills }}</td>
-                                    <td>{{ candidate.placed }}</td><td>{{ candidate.career }}</td>
-                                    <td>{{ candidate.status }}</td>
-
-                                    <td>  
-                                        <div class="row justify-content-around">
-                                            <a class="btn btn-outline-warning badge-pill" href="/edit/{{ candidate.id }}">Edit</a>  
-                                            <a class="btn btn-outline-danger badge-pill" href="/delete/{{ candidate.id }}">Delete</a>
-                                        </div>
-                                    </td>  
-                                </tr>  
-                            {% endfor %}
-                        {%endif%}
-                    </tbody>  
-                </table>
-                <div class="row justify-content-center">
-                    <a href="/hard" class="btn btn-outline-primary badge-pill text-center">Print</a>
-                </div>
-            </div>
-        </div>
+        <a href="/show" class="btn btn-outline-success">Candidates</a>
+        <a href="/comshow" class="btn btn-outline-warning">Companies</a>
     </div>
 </body>
 </html>

@@ -1,7 +1,27 @@
 from django.shortcuts import render, redirect
 
-from crudl.models import Candidates
-from crudl.forms import CandidatesForm
+from crudl.models import Candidates, Companies
+from crudl.forms import CandidatesForm, CompaniesForm
+
+
+# Create your views here.
+def company(request):
+    if request.method=="POST":
+        print("Inside view as post request")
+        object=CompaniesForm(request.POST)
+        if object.is_valid():
+            print("valid object")
+            try:
+                print('object before save',object)
+                object.save()
+                print('object saved',object)
+                return redirect("/comshow")
+            except:pass
+    else:
+        object=CompaniesForm()
+        print("NEw form called")
+    return render(request,"comenroll.html",{"obj":object})
+
 
 one=''
 
@@ -10,6 +30,18 @@ temp=[]
 def initial(request):
     return render(request,'index.html')
 
+def auth(request):
+    user=request.POST['user']
+    pas=request.POST['pass']
+    if(user=='sasi' and pas=='kumarsalem'):
+        one=user
+        return render(request,"home.html",{'who':one})
+    else:
+        return render(request,'index.html',{"info":"Login failed"})
+
+def parent(request):
+    return render(request,'home.html',{'who':one})
+''' 
 def auth(request):
     user=request.POST['user']
     pas=request.POST['pass']
@@ -26,7 +58,7 @@ def auth(request):
         
         return render(request,"home.html",{"candidates":candidates,'who':one})
     else:
-        return render(request,'index.html',{"info":"Login failed"})
+        return render(request,'index.html',{"info":"Login failed"}) '''
 
 # Create your views here.
 def candidate(request):
@@ -46,7 +78,19 @@ def candidate(request):
         print("NEw form called")
     return render(request,"enroll.html",{"obj":object})
 
+def comshow(request):
+    print("comshow function invoked")
+    companies=Companies.objects.all()
+
+    temp.clear();
+    for x in companies:
+            comp=Companies.objects.get(id=x.id)
+            temp.append(comp)
+
+    return render(request,"comhome.html",{"companies":companies,'who':one})
+
 def show(request):
+    print("show function invoked")
     candidates=Candidates.objects.all()
 
     temp.clear();
@@ -54,27 +98,48 @@ def show(request):
             cand=Candidates.objects.get(id=x.id)
             temp.append(cand)
 
-    return render(request,"home.html",{"candidates":candidates,'who':one})
+    return render(request,"canhome.html",{"candidates":candidates,'who':one})
 
 def edit(request,id):
     cand=Candidates.objects.get(id=id)
     return render(request,"edit.html",{"candidate":cand})
 
+def editcom(request,id):
+    com=Companies.objects.get(id=id)
+    return render(request,"comedit.html",{"company":com})
+
 def update(request, id):  
     cand = Candidates.objects.get(id=id)  
     form = CandidatesForm(request.POST, instance = cand)  
-    if form.is_valid():  
+    if form.is_valid(): 
         form.save()  
         return redirect("/show")  
     return render(request, 'edit.html', {'candidate': cand})  
+
+
+def updatecom(request, id):  
+    com = Companies.objects.get(id=id)  
+    form = CompaniesForm(request.POST, instance = com)  
+    if form.is_valid(): 
+        form.save()  
+        return redirect("/comshow")  
+    return render(request, 'comedit.html', {'company': com})
 
 def remove(request,id):
     cand=Candidates.objects.get(id=id)
     cand.delete()
     return redirect("/show")
 
+def removecom(request,id):
+    com=Companies.objects.get(id=id)
+    com.delete()
+    return redirect("/comshow")
+
 def find(request):
     return render(request,'find.html')
+
+def findcom(request):
+    return render(request,'comfind.html')
 
 def look(request):
     reg=request.POST['regno']
@@ -99,7 +164,44 @@ def look(request):
     for x in candidates:
             cand=Candidates.objects.get(id=x.id)
             temp.append(cand)
-    return render(request,"home.html",{'candidates':candidates})
+    return render(request,"canhome.html",{'candidates':candidates})
+
+
+def lookcom(request):
+    org=request.POST['org']
+    sk=request.POST['skills']
+    dt=request.POST['date']
+    ct=request.POST['count']
+    companies = Companies.objects.all()
+    #reg=111
+    if org!="" and sk=="" and dt=="" and ct=="":
+        com=[]
+        for x in companies:
+            if x.org == org:
+                com.append(x)
+    elif org=="" and sk!="" and dt=="" and ct=="":
+        com=[]
+        for x in companies:
+            if sk in x.role:
+                com.append(x)
+    elif org=="" and sk=="" and dt!="" and ct=="":
+        dt=date(dt)
+        com=[]
+        for x in companies:
+            if dt in x.date:
+                com.append(x)
+    elif org=="" and sk=="" and dt=="" and ct!="":
+        ct=int(ct)
+        com=[]
+        for x in companies:
+            if ct <= x.taken:
+                com.append(x)
+    companies=com
+    temp.clear();
+    for x in companies:
+            com=Companies.objects.get(id=x.id)
+            temp.append(com)
+    return render(request,"comhome.html",{'companies':companies})
 
 
 def printing(request):
@@ -108,4 +210,4 @@ def printing(request):
 
     
     
-    return render(request,"home.html",{'candidates':temp})
+    return render(request,"canhome.html",{'candidates':temp})

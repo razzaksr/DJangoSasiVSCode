@@ -2,6 +2,17 @@ from django.db import models
 
 # Create your models here.
 
+class Companies(models.Model):
+    org=models.CharField(max_length=100)
+    date=models.DateField(auto_now=False, auto_now_add=False)
+    required=models.IntegerField()
+    role=models.CharField(max_length=50)
+    package=models.FloatField()
+    taken=models.IntegerField()
+    whom=models.TextField()
+    class Meta:
+        db_table='companies'
+
 class Candidates(models.Model):
     regno=models.IntegerField()
     gender=models.CharField(max_length=50)
