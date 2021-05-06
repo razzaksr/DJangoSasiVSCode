@@ -21,5 +21,8 @@ urlpatterns = [
     path('findcom',views.findcom),
     path('look',views.look),
     path('lookcom',views.lookcom),
+    path('filter',views.filter),
+    path('fetchinfo',views.info),
+    path('dofilter/<int:key>',views.fildo),
     path('hard',views.printing)
 ]

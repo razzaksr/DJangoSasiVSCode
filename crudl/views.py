@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-
+from datetime import *
 from crudl.models import Candidates, Companies
 from crudl.forms import CandidatesForm, CompaniesForm
 
@@ -203,6 +203,35 @@ def lookcom(request):
             temp.append(com)
     return render(request,"comhome.html",{'companies':companies})
 
+def filter(request):
+    companies=Companies.objects.all()
+    temp.clear()
+    for x in companies:
+        if x.date> date.today():
+            temp.append(x)
+            print(x.org)
+    return render(request,'comfilter.html',{'companies':temp})
+
+def info(request):
+    key=int(request.POST['org'])
+    companies=Companies.objects.all()
+    only=Companies.objects.get(id=key)
+    temp.clear()
+    for x in companies:
+        if x.date> date.today():
+            temp.append(x)
+            print(x.org)
+    return render(request,'comfilter.html',{'obj':only,'companies':temp})
+
+def fildo(request,key):
+    key=int(key)
+    candidates = Candidates.objects.all()
+    company = Companies.objects.get(id=key)
+    temp.clear()
+    for x in candidates:
+        if company.role in x.skills:
+            temp.append(x)
+    return render(request,'filtered.html',{"obj":company,"candidates":temp})
 
 def printing(request):
     for x in temp:
