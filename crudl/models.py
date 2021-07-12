@@ -7,7 +7,7 @@ class Companies(models.Model):
     date=models.DateField(auto_now=False, auto_now_add=False)
     required=models.IntegerField()
     role=models.CharField(max_length=50)
-    package=models.FloatField()
+    packages=models.FloatField()
     taken=models.IntegerField()
     whom=models.TextField()
     class Meta:
