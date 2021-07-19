@@ -20,10 +20,10 @@ def company(request):
     else:
         object=CompaniesForm()
         print("NEw form called")
-    return render(request,"comenroll.html",{"obj":object})
+    return render(request,"comenroll.html",{"obj":object,'who':request.session['one']})
 
 
-one=''
+#one=''
 
 temp=[]
 
@@ -34,13 +34,15 @@ def auth(request):
     user=request.POST['user']
     pas=request.POST['pass']
     if(user=='sasi' and pas=='kumarsalem'):
-        one=user
-        return render(request,"home.html",{'who':one})
+        #one=user
+        request.session['one']=user;
+        return render(request,"home.html",{'who':request.session['one']})
+        #return render(request,"home.html")
     else:
         return render(request,'index.html',{"info":"Login failed"})
 
 def parent(request):
-    return render(request,'home.html',{'who':one})
+    return render(request,'home.html',{'who':''})
 ''' 
 def auth(request):
     user=request.POST['user']
@@ -76,7 +78,7 @@ def candidate(request):
     else:
         object=CandidatesForm()
         print("NEw form called")
-    return render(request,"enroll.html",{"obj":object})
+    return render(request,"enroll.html",{"obj":object,'who':request.session['one']})
 
 def comshow(request):
     print("comshow function invoked")
@@ -87,7 +89,7 @@ def comshow(request):
             comp=Companies.objects.get(id=x.id)
             temp.append(comp)
 
-    return render(request,"comhome.html",{"companies":companies,'who':one})
+    return render(request,"comhome.html",{"companies":companies,'who':request.session['one']})
 
 def show(request):
     print("show function invoked")
@@ -98,15 +100,15 @@ def show(request):
             cand=Candidates.objects.get(id=x.id)
             temp.append(cand)
 
-    return render(request,"canhome.html",{"candidates":candidates,'who':one})
+    return render(request,"canhome.html",{"candidates":candidates,'who':request.session['one']})
 
 def edit(request,id):
     cand=Candidates.objects.get(id=id)
-    return render(request,"edit.html",{"candidate":cand})
+    return render(request,"edit.html",{"candidate":cand,'who':request.session['one']})
 
 def editcom(request,id):
     com=Companies.objects.get(id=id)
-    return render(request,"comedit.html",{"company":com})
+    return render(request,"comedit.html",{"company":com,'who':request.session['one']})
 
 def update(request, id):  
     cand = Candidates.objects.get(id=id)  
@@ -114,7 +116,7 @@ def update(request, id):
     if form.is_valid(): 
         form.save()  
         return redirect("/show")  
-    return render(request, 'edit.html', {'candidate': cand})  
+    return render(request, 'edit.html', {'candidate': cand,'who':request.session['one']})  
 
 
 def updatecom(request, id):  
@@ -123,7 +125,7 @@ def updatecom(request, id):
     if form.is_valid(): 
         form.save()  
         return redirect("/comshow")  
-    return render(request, 'comedit.html', {'company': com})
+    return render(request, 'comedit.html', {'company': com,'who':request.session['one']})
 
 def remove(request,id):
     cand=Candidates.objects.get(id=id)
@@ -136,10 +138,10 @@ def removecom(request,id):
     return redirect("/comshow")
 
 def find(request):
-    return render(request,'find.html')
+    return render(request,'find.html',{'who':request.session['one']})
 
 def findcom(request):
-    return render(request,'comfind.html')
+    return render(request,'comfind.html',{'who':request.session['one']})
 
 def look(request):
     reg=request.POST['regno']
@@ -164,7 +166,7 @@ def look(request):
     for x in candidates:
             cand=Candidates.objects.get(id=x.id)
             temp.append(cand)
-    return render(request,"canhome.html",{'candidates':candidates})
+    return render(request,"canhome.html",{'candidates':candidates,'who':request.session['one']})
 
 
 def lookcom(request):
@@ -201,7 +203,7 @@ def lookcom(request):
     for x in companies:
             com=Companies.objects.get(id=x.id)
             temp.append(com)
-    return render(request,"comhome.html",{'companies':companies})
+    return render(request,"comhome.html",{'companies':companies,'who':request.session['one']})
 
 def filter(request):
     companies=Companies.objects.all()
@@ -210,7 +212,7 @@ def filter(request):
         if x.date> date.today():
             temp.append(x)
             print(x.org)
-    return render(request,'comfilter.html',{'companies':temp})
+    return render(request,'comfilter.html',{'companies':temp,'who':request.session['one']})
 
 def info(request):
     key=int(request.POST['org'])
@@ -221,7 +223,7 @@ def info(request):
         if x.date> date.today():
             temp.append(x)
             print(x.org)
-    return render(request,'comfilter.html',{'obj':only,'companies':temp})
+    return render(request,'comfilter.html',{'obj':only,'companies':temp,'who':request.session['one']})
 
 def fildo(request,key):
     key=int(key)
@@ -231,7 +233,7 @@ def fildo(request,key):
     for x in candidates:
         if company.role in x.skills:
             temp.append(x)
-    return render(request,'filtered.html',{"obj":company,"candidates":temp})
+    return render(request,'filtered.html',{"obj":company,"candidates":temp,'who':request.session['one']})
 
 def printing(request):
     for x in temp:
@@ -240,3 +242,10 @@ def printing(request):
     
     
     return render(request,"canhome.html",{'candidates':temp})
+
+def logout(request):
+    if(request.session['one']!="" or request.session['one']!=None):
+        del request.session['one']
+        return redirect("/")
+    else:
+        return redirect("/")

@@ -24,5 +24,6 @@ urlpatterns = [
     path('filter',views.filter),
     path('fetchinfo',views.info),
     path('dofilter/<int:key>',views.fildo),
-    path('hard',views.printing)
+    path('hard',views.printing),
+    path('logout',views.logout)
 ]
