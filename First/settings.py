@@ -39,7 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crudl'
+    'crudl',
+    'cooks',
+    'mailsend'
 ]
 
 MIDDLEWARE = [
@@ -251,4 +253,18 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST_USER='zealoustechcorptest@gmail.com'
+EMAIL_HOST_PASSWORD='Razak@123'
+EMAIL_HOST='smtp.gmail.com'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+
+
+
+
 #>>>>>>> 9ce315fb03b0fcc6e140b9a1e8eb94dd8225c3b4
+
+
